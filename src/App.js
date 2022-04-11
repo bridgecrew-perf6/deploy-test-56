@@ -1,23 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import "./App.css";
 
 function App() {
+  const [count, setCount] = useState(10);
+  let Multi = () => {
+    if (count >= 100) {
+      return;
+    }
+    setCount(count * 2);
+  };
+
+  let Add = () => {
+    if (count >= 20) {
+      return;
+    }
+    setCount(count + 1);
+  };
+
+  let Sub = () => {
+    if (count <= 0) {
+      return;
+    }
+    setCount(count - 1);
+  };
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h3>Counter : {count} </h3>
+      <button onClick={Add}>Add</button>
+      <button onClick={Sub}>Sub</button>
+      <button onClick={Multi}>Multi</button>
+      <div className={count % 2 == 0 ? 'green' : 'red'}>
+        {count} is a {count % 2 == 0 ? "Even" : "Odd"} number
+      </div>
     </div>
   );
 }
